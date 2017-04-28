@@ -1,0 +1,366 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`bin diff prints the diff for a single file 1`] = `
+"/Users/netzach/Develop/styled-components-stylefmt/src/__tests__/fixtures/hard/invalid-indentation.actual.js
+import styled from 'styled-components'
+
+// ⚠ 2 indentation errors ⚠
+const Comp = () => {
+  const Button = styled.button\`
+    color: blue;
+    background: red;
+    display: block;
+  \`
+
+  return Button
+}
+
+// ⚠ 2 indentation errors ⚠
+const Comp2 = () => {
+  const InnerComp = () => {
+    const Button = styled.button\`
+      color: blue;
+      background: red;
+      display: block;
+    \`
+
+    return Button
+  }
+
+  return InnerComp()
+}
+
+"
+`;
+
+exports[`bin diff prints the diff for multiple files 1`] = `
+"/Users/netzach/Develop/styled-components-stylefmt/src/__tests__/fixtures/hard/indentation.actual.js
+import styled, { keyframes } from 'styled-components'
+
+// None of the below should throw indentation errors
+const Comp = () => {
+  const Button = styled.button\`
+    color: blue;
+  \`
+
+  return Button
+}
+
+const Comp2 = () => {
+  const InnerComp = () => {
+    const Button = styled.button\`
+      color: blue;
+    \`
+
+    return Button
+  }
+
+  return InnerComp()
+}
+
+const Button = styled.button\`
+  color: blue;
+\`
+
+const animations = {
+  spinnerCircle: keyframes\`
+    0% {
+      opacity: 0;
+    }
+
+    100% {
+      opacity: 1;
+    }
+  \`,
+}
+
+
+/Users/netzach/Develop/styled-components-stylefmt/src/__tests__/fixtures/hard/invalid-indentation.actual.js
+import styled from 'styled-components'
+
+// ⚠ 2 indentation errors ⚠
+const Comp = () => {
+  const Button = styled.button\`
+    color: blue;
+    background: red;
+    display: block;
+  \`
+
+  return Button
+}
+
+// ⚠ 2 indentation errors ⚠
+const Comp2 = () => {
+  const InnerComp = () => {
+    const Button = styled.button\`
+      color: blue;
+      background: red;
+      display: block;
+    \`
+
+    return Button
+  }
+
+  return InnerComp()
+}
+
+
+/Users/netzach/Develop/styled-components-stylefmt/src/__tests__/fixtures/hard/source-maps.actual.js
+import styled from 'styled-components'
+
+// ⚠️ BAD INDENTATION at 5:1 ⚠️
+const Button = styled.button\`
+  color: blue;
+\`
+
+// Correct example
+const Button2 = styled.button\`
+  color: blue;
+\`
+
+// ⚠️ BAD INDENTATION at 10:5 ⚠️
+const Button3 = styled.button\`
+  color: blue;
+\`
+
+// ⚠️ BAD INDENTATION at 22:5 ⚠️
+const Button4 = styled.button\`
+  color: blue;
+  background: \${color};
+  display: block;
+\`
+
+// ⚠️ BAD INDENTATION at 28:5 ⚠️
+const Button5 = styled.button\`
+  color: blue;
+  background: \${color};
+  display: block;
+\`
+
+// ⚠️ BAD INDENTATION at 35:5 ⚠️
+const Button6 = styled.button\`
+  color: blue;
+  \${\`
+      background: red;
+  \`}
+  display: block;
+\`
+
+
+/Users/netzach/Develop/styled-components-stylefmt/src/__tests__/fixtures/interpolations/complex.actual.js
+There is no difference with the original file.
+
+/Users/netzach/Develop/styled-components-stylefmt/src/__tests__/fixtures/interpolations/invalid.actual.js
+import styled from 'styled-components'
+
+const color = 'red'
+
+// ⚠️ BAD INDENTATION ⚠️
+const Button2 = styled.button\`
+  display: block;
+  color: \${color};
+  background: blue;
+\`
+
+
+/Users/netzach/Develop/styled-components-stylefmt/src/__tests__/fixtures/interpolations/valid.actual.js
+There is no difference with the original file.
+
+/Users/netzach/Develop/styled-components-stylefmt/src/__tests__/fixtures/real-world/Circle.actual.js
+There is no difference with the original file.
+
+/Users/netzach/Develop/styled-components-stylefmt/src/__tests__/fixtures/simple/global.actual.js
+// Global variables
+
+// ⚠️ Wrong indentation ⚠️
+const Button = styled.div\`
+  color: red;
+\`
+
+// ⚠️ Wrong indentation ⚠️
+const animation = keyframes\`
+  0% {
+    opacity: 0;
+  }
+\`
+
+// ⚠️ Wrong indentation ⚠️
+injectGlobal\`
+  html {
+    margin: 0;
+  }
+\`
+
+const styles = css\`
+  color: blue;
+\`
+
+
+/Users/netzach/Develop/styled-components-stylefmt/src/__tests__/fixtures/simple/helpers.actual.js
+import styled, { css, keyframes, injectGlobal } from 'styled-components'
+
+/**
+ * Valid
+ */
+const styles = css\`
+  color: blue;
+\`
+
+const animation = keyframes\`
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+\`
+
+const Button = styled.button\`
+  \${styles}
+  animation: 3s \${animation};
+\`
+
+injectGlobal\`
+  html {
+    margin: 0;
+    padding: 0;
+  }
+\`
+
+// ⚠ Indentation
+const styles2 = css\`
+  color: blue;
+\`
+
+// ⚠ Indentation
+const animation2 = keyframes\`
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+\`
+
+// ⚠ Indentation
+injectGlobal\`
+  html {
+    margin: 0;
+    padding: 0;
+  }
+\`
+
+
+/Users/netzach/Develop/styled-components-stylefmt/src/__tests__/fixtures/simple/imports.actual.js
+import notStyled, { css as notCss, keyframes as notKeyframes, injectGlobal as notInjectGlobal } from 'styled-components'
+
+// ⚠️ BAD INDENTATION ⚠️
+const Button2 = notStyled.button\`
+  color: blue;
+\`
+
+const styles = notCss\`
+  color: blue;
+\`
+
+const animation = notKeyframes\`
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+\`
+
+notInjectGlobal\`
+  html {
+    color: blue;
+  }
+\`
+
+
+/Users/netzach/Develop/styled-components-stylefmt/src/__tests__/fixtures/simple/invalid.actual.js
+import styled from 'styled-components'
+
+// ⚠️ EMPTY BLOCK ⚠️
+const Button = styled.button\`
+
+\`
+
+// ⚠️ BAD INDENTATION ⚠️
+const Button2 = styled.button\`
+  color: blue;
+\`
+
+
+/Users/netzach/Develop/styled-components-stylefmt/src/__tests__/fixtures/simple/nesting.actual.js
+There is no difference with the original file.
+
+/Users/netzach/Develop/styled-components-stylefmt/src/__tests__/fixtures/simple/valid.actual.js
+There is no difference with the original file.
+"
+`;
+
+exports[`bin help prints the help page 1`] = `
+"Usage: styled-components-stylefmt [options] input-name [output-name]
+
+Options:
+
+  -b, --config-basedir   Path to the directory that relative paths defining \\"extends\\"
+  -c, --config           Path to a specific configuration file (JSON, YAML, or CommonJS)
+  -d, --diff             Output diff against original file
+  -r, --recursive        Format list of space seperated files(globs) in place
+  -v, --version          Output the version number
+  -h, --help             Output usage information
+  -i, --ignore-path      Path to a file containing patterns that describe files to ignore.
+"
+`;
+
+exports[`bin no args prints the help page by default 1`] = `
+"Usage: styled-components-stylefmt [options] input-name [output-name]
+
+Options:
+
+  -b, --config-basedir   Path to the directory that relative paths defining \\"extends\\"
+  -c, --config           Path to a specific configuration file (JSON, YAML, or CommonJS)
+  -d, --diff             Output diff against original file
+  -r, --recursive        Format list of space seperated files(globs) in place
+  -v, --version          Output the version number
+  -h, --help             Output usage information
+  -i, --ignore-path      Path to a file containing patterns that describe files to ignore.
+"
+`;
+
+exports[`bin write formats a single file and prints to stdout 1`] = `
+"import styled from 'styled-components'
+
+// ⚠ 2 indentation errors ⚠
+const Comp = () => {
+  const Button = styled.button\`
+    color: blue;
+    background: red;
+    display: block;
+  \`
+
+  return Button
+}
+
+// ⚠ 2 indentation errors ⚠
+const Comp2 = () => {
+  const InnerComp = () => {
+    const Button = styled.button\`
+      color: blue;
+      background: red;
+      display: block;
+    \`
+
+    return Button
+  }
+
+  return InnerComp()
+}
+"
+`;

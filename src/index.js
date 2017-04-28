@@ -43,7 +43,7 @@ const getClosingLineTokens = (line) => {
   return matches && matches[1]
 }
 
-export default (inputPath) => {
+export default (inputPath, options = {}) => {
   const input = fs.readFileSync(inputPath).toString()
   const lines = input.split(EOL)
   let output = input
@@ -118,7 +118,7 @@ export default (inputPath) => {
       const wrappedContent = wrapperFn(fixedContent)
       const isWrapped = wrappedContent !== fixedContent
 
-      const { css } = resolvePromise(postcss(stylefmt).process(wrappedContent, { from: inputPath }))
+      const { css } = resolvePromise(postcss([stylefmt(options)]).process(wrappedContent, { from: inputPath }))
       const indentedCss = indentString(css, 1, nodeIndentation)
 
       const formatted = expressionSourceMap.reduce(
