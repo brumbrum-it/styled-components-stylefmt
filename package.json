@@ -1,6 +1,6 @@
 {
   "name": "styled-components-stylefmt",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Formats styled-components templates with stylefmt",
   "main": "lib/index.js",
   "dependencies": {
@@ -39,6 +39,7 @@
     "format": "prettier-eslint --write \"src/**/*.js\"",
     "lib": "babel src --ignore \"/__tests__/\" --out-dir lib",
     "lint-staged": "lint-staged",
+    "prepublish": "yarn lib",
     "test": "jest --config .jestrc.json",
     "test:stylelint": "stylelint \"./src/__tests__/fixtures/**/*.expected.js\" --config .stylelintrc"
   },
