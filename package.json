@@ -1,0 +1,52 @@
+{
+  "name": "styled-components-stylefmt",
+  "version": "0.0.0",
+  "description": "Formats styled-components templates with stylefmt",
+  "main": "lib/index.js",
+  "dependencies": {
+    "babel-traverse": "^6.24.1",
+    "babylon": "^6.17.0",
+    "deasync": "^0.1.9",
+    "escape-string-regexp": "^1.0.5",
+    "indent-string": "^3.1.0",
+    "postcss": "^5.2.17",
+    "stylefmt": "^5.3.2",
+    "stylelint-processor-styled-components": "^0.1.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-eslint": "^7.2.3",
+    "babel-jest": "^19.0.0",
+    "babel-preset-env": "^1.4.0",
+    "coveralls": "^2.13.1",
+    "eslint": "^3.19.0",
+    "eslint-config-airbnb-base": "^11.1.3",
+    "eslint-plugin-import": "^2.2.0",
+    "jest": "^19.0.2",
+    "lint-staged": "^3.4.1",
+    "pre-commit": "^1.2.2",
+    "prettier-eslint-cli": "^3.4.2",
+    "stylelint": "^7.10.1"
+  },
+  "scripts": {
+    "coveralls": "cat ./coverage/lcov.info | ./node_modules/.bin/coveralls",
+    "eslint": "eslint src",
+    "format": "prettier-eslint --write \"src/**/*.js\"",
+    "lib": "babel src --ignore \"/__tests__/\" --out-dir lib",
+    "lint-staged": "lint-staged",
+    "test": "jest --config .jestrc.json",
+    "test:stylelint": "stylelint \"./src/__tests__/fixtures/**/*.expected.js\" --config .stylelintrc"
+  },
+  "author": "Enoah Netzach",
+  "license": "MIT",
+  "engines": {
+    "node": ">= 4"
+  },
+  "lint-staged": {
+    "*.js": [
+      "format",
+      "git add"
+    ]
+  },
+  "pre-commit": "lint-staged"
+}

@@ -1,0 +1,21 @@
+{
+  "env": {
+    "node": true,
+    "jest": true
+  },
+  "extends": [
+    "airbnb-base"
+  ],
+  "parser": "babel-eslint",
+  "rules": {
+    "max-len": [
+      "error",
+      {
+        "code": 120,
+        "ignoreComments": true
+      }
+    ],
+    "semi": ["error", "never"],
+    "spaced-comment": "warn"
+  }
+}

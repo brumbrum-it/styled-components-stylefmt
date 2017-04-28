@@ -1,0 +1,6 @@
+{
+  "coverageReporters": ["lcov"],
+  "rootDir": "src",
+  "testEnvironment": "node",
+  "testPathIgnorePatterns": ["/node_modules/", "/fixtures/"]
+}
