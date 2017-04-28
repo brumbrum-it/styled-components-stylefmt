@@ -1,10 +1,10 @@
 import { spawn } from 'child_process'
 import fs from 'fs-extra'
 import globby from 'globby'
-import os from 'os'
 import path from 'path'
+import tempy from 'tempy'
 
-const tmpdir = fs.mkdtempSync(os.tmpdir())
+const tmpdir = tempy.directory()
 
 const copyTestFile = (file) => {
   const tmpFile = path.join(tmpdir, path.basename(file))

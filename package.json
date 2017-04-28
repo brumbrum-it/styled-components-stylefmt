@@ -31,7 +31,8 @@
     "lint-staged": "^3.4.1",
     "pre-commit": "^1.2.2",
     "prettier-eslint-cli": "^3.4.2",
-    "stylelint": "^7.10.1"
+    "stylelint": "^7.10.1",
+    "tempy": "^0.1.0"
   },
   "scripts": {
     "coveralls": "cat ./coverage/lcov.info | ./node_modules/.bin/coveralls",
