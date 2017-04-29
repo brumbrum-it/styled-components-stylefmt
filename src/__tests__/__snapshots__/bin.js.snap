@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`bin diff prints the diff for a single file 1`] = `
-"/Users/netzach/Develop/styled-components-stylefmt/src/__tests__/fixtures/hard/invalid-indentation.actual.js
+"src/__tests__/fixtures/hard/invalid-indentation.actual.js
 import styled from 'styled-components'
 
 // ⚠ 2 indentation errors ⚠
@@ -34,7 +34,7 @@ const Comp2 = () => {
 `;
 
 exports[`bin diff prints the diff for multiple files 1`] = `
-"/Users/netzach/Develop/styled-components-stylefmt/src/__tests__/fixtures/hard/indentation.actual.js
+"src/__tests__/fixtures/hard/indentation.actual.js
 import styled, { keyframes } from 'styled-components'
 
 // None of the below should throw indentation errors
@@ -75,7 +75,7 @@ const animations = {
 }
 
 
-/Users/netzach/Develop/styled-components-stylefmt/src/__tests__/fixtures/hard/invalid-indentation.actual.js
+src/__tests__/fixtures/hard/invalid-indentation.actual.js
 import styled from 'styled-components'
 
 // ⚠ 2 indentation errors ⚠
@@ -105,7 +105,7 @@ const Comp2 = () => {
 }
 
 
-/Users/netzach/Develop/styled-components-stylefmt/src/__tests__/fixtures/hard/source-maps.actual.js
+src/__tests__/fixtures/hard/source-maps.actual.js
 import styled from 'styled-components'
 
 // ⚠️ BAD INDENTATION at 5:1 ⚠️
@@ -147,10 +147,10 @@ const Button6 = styled.button\`
 \`
 
 
-/Users/netzach/Develop/styled-components-stylefmt/src/__tests__/fixtures/interpolations/complex.actual.js
+src/__tests__/fixtures/interpolations/complex.actual.js
 There is no difference with the original file.
 
-/Users/netzach/Develop/styled-components-stylefmt/src/__tests__/fixtures/interpolations/invalid.actual.js
+src/__tests__/fixtures/interpolations/invalid.actual.js
 import styled from 'styled-components'
 
 const color = 'red'
@@ -163,13 +163,13 @@ const Button2 = styled.button\`
 \`
 
 
-/Users/netzach/Develop/styled-components-stylefmt/src/__tests__/fixtures/interpolations/valid.actual.js
+src/__tests__/fixtures/interpolations/valid.actual.js
 There is no difference with the original file.
 
-/Users/netzach/Develop/styled-components-stylefmt/src/__tests__/fixtures/real-world/Circle.actual.js
+src/__tests__/fixtures/real-world/Circle.actual.js
 There is no difference with the original file.
 
-/Users/netzach/Develop/styled-components-stylefmt/src/__tests__/fixtures/simple/global.actual.js
+src/__tests__/fixtures/simple/global.actual.js
 // Global variables
 
 // ⚠️ Wrong indentation ⚠️
@@ -196,7 +196,7 @@ const styles = css\`
 \`
 
 
-/Users/netzach/Develop/styled-components-stylefmt/src/__tests__/fixtures/simple/helpers.actual.js
+src/__tests__/fixtures/simple/helpers.actual.js
 import styled, { css, keyframes, injectGlobal } from 'styled-components'
 
 /**
@@ -253,7 +253,7 @@ injectGlobal\`
 \`
 
 
-/Users/netzach/Develop/styled-components-stylefmt/src/__tests__/fixtures/simple/imports.actual.js
+src/__tests__/fixtures/simple/imports.actual.js
 import notStyled, { css as notCss, keyframes as notKeyframes, injectGlobal as notInjectGlobal } from 'styled-components'
 
 // ⚠️ BAD INDENTATION ⚠️
@@ -282,7 +282,7 @@ notInjectGlobal\`
 \`
 
 
-/Users/netzach/Develop/styled-components-stylefmt/src/__tests__/fixtures/simple/invalid.actual.js
+src/__tests__/fixtures/simple/invalid.actual.js
 import styled from 'styled-components'
 
 // ⚠️ EMPTY BLOCK ⚠️
@@ -296,10 +296,10 @@ const Button2 = styled.button\`
 \`
 
 
-/Users/netzach/Develop/styled-components-stylefmt/src/__tests__/fixtures/simple/nesting.actual.js
+src/__tests__/fixtures/simple/nesting.actual.js
 There is no difference with the original file.
 
-/Users/netzach/Develop/styled-components-stylefmt/src/__tests__/fixtures/simple/valid.actual.js
+src/__tests__/fixtures/simple/valid.actual.js
 There is no difference with the original file.
 "
 `;

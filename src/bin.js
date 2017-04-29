@@ -89,7 +89,7 @@ function handleDiff(file, original, formatted) {
     diff = formatted
   }
 
-  return `${file}\n${diff}`
+  return `${path.relative(process.cwd(), file)}\n${diff}`
 }
 
 function processMultipleFiles(files) {
