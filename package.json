@@ -45,9 +45,25 @@
     "test:stylelint": "stylelint \"./src/__tests__/fixtures/**/*.expected.js\" --config .stylelintrc"
   },
   "author": "Enoah Netzach",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EnoahNetzach/styled-components-stylefmt.git"
+  },
+  "bugs": {
+    "url": "https://github.com/EnoahNetzach/styled-components-stylefmt/issues"
+  },
   "license": "MIT",
+  "keywords": [
+    "styled-components",
+    "stylefmt",
+    "stylelint",
+    "css-format"
+  ],
   "engines": {
     "node": ">= 4"
+  },
+  "bin": {
+    "styled-components-stylefmt": "bin/cli.js"
   },
   "files": [
     "bin/index.js",
