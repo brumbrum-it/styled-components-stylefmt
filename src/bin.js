@@ -1,3 +1,5 @@
+// @flow
+
 import { createPatch } from 'diff'
 import chalk from 'chalk'
 import fs from 'fs'
@@ -5,7 +7,7 @@ import globby from 'globby'
 import minimist from 'minimist'
 import path from 'path'
 import pkg from '../package.json'
-import format from '../lib/'
+import format from '.'
 
 /* eslint-disable no-console */
 
@@ -51,8 +53,9 @@ if (argv.c) {
   options.configFile = argv.c
 }
 
-if (argv.b) {
-  options.configBasedir = path.isAbsolute(argv.b) ? argv.b : path.resolve(process.cwd(), argv.b)
+const basedir = String(argv.b)
+if (basedir) {
+  options.configBasedir = path.isAbsolute(basedir) ? basedir : path.resolve(process.cwd(), basedir)
 }
 
 if (argv.i) {
@@ -68,22 +71,25 @@ function handleDiff(file, original, formatted) {
 
   if (chalk.supportsColor) {
     if (diff) {
-      diff = chalk.gray(diff)
+      diff = chalk.gray(String(diff))
     } else {
       diff = createPatch(file, original, formatted)
-      diff = diff.split('\n').splice(4).map((diffLine) => {
-        let line = diffLine
-        if (diffLine[0] === '+') {
-          line = chalk.green(diffLine)
-        } else if (line[0] === '-') {
-          line = chalk.red(diffLine)
-        } else if (diffLine.match(/^@@\s+.+?\s+@@/) || diffLine === '\\ No newline at end of file') {
-          line = ''
-        }
+        .split('\n')
+        .splice(4)
+        .map((diffLine) => {
+          let line = diffLine
+          if (diffLine[0] === '+') {
+            line = chalk.green(diffLine)
+          } else if (line[0] === '-') {
+            line = chalk.red(diffLine)
+          } else if (diffLine.match(/^@@\s+.+?\s+@@/) || diffLine === '\\ No newline at end of file') {
+            line = ''
+          }
 
-        return chalk.gray(line)
-      })
-      diff = diff.join('\n').trim()
+          return chalk.gray(line)
+        })
+        .join('\n')
+        .trim()
     }
   } else if (!diff) {
     diff = formatted
@@ -128,7 +134,7 @@ function processMultipleFiles(files) {
   })
 }
 
-if (argv.r) {
+if (typeof argv.r === 'string') {
   globby([path.join(argv.r)].concat(argv._)).then(processMultipleFiles)
 } else if (argv._[0]) {
   const inputPath = argv._[0]

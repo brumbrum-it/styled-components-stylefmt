@@ -1,3 +1,5 @@
+// @flow
+
 import traverse from 'babel-traverse'
 import { parse, tokTypes } from 'babylon'
 import crypto from 'crypto'
@@ -15,9 +17,11 @@ import {
   getTaggedTemplateLiteralContent,
 } from 'stylelint-processor-styled-components/lib/utils/tagged-template-literal'
 
-const getHash = string => crypto.createHash('md5').update(string).digest('hex').substr(0, 8)
+import type Options from 'stylefmt'
 
-const resolvePromise = (promise) => {
+const getHash = (text: string) => crypto.createHash('md5').update(text).digest('hex').substr(0, 8)
+
+function resolvePromise<R>(promise: Promise<R>): R | any {
   const guard = Symbol('deasync guard')
   let result = guard
 
@@ -37,13 +41,13 @@ const closingTokens = [tokTypes.bracketR, tokTypes.braceR, tokTypes.braceBarR, t
 
 const closingRegexp = new RegExp(`^\\s*((?:${closingTokens.join('|')}|\\s)+)\\s*${closingTokens[1]}.*$`, 'm')
 
-const getClosingLineTokens = (line) => {
+function getClosingLineTokens(line: string) {
   const matches = line.match(closingRegexp)
 
-  return matches && matches[1]
+  return matches ? matches[1] : ''
 }
 
-export default (inputPath, options = {}) => {
+export default function (inputPath: string, options?: Options = {}) {
   const input = fs.readFileSync(inputPath).toString()
   const lines = input.split(EOL)
   let output = input
@@ -85,9 +89,16 @@ export default (inputPath, options = {}) => {
         return
       }
 
-      const nodeIndentation = lines[node.loc.start.line - 1].match(/(\s*)/)[1]
+      const nodeIndentationMatches = lines[node.loc.start.line - 1].match(/(\s*)/)
+      const nodeIndentation = nodeIndentationMatches ? nodeIndentationMatches[1] : ''
 
-      const expressionSourceMap = []
+      type expressionSourceMapType = {
+        closingLineTokens: string,
+        endsWithSemicolon: boolean,
+        hash: string,
+        sourceCode: string,
+      }
+      const expressionSourceMap: Array<expressionSourceMapType> = []
 
       node.quasi.expressions.forEach((expression, index) => {
         const sourceCode = input.substring(expression.start, expression.end)
@@ -97,7 +108,7 @@ export default (inputPath, options = {}) => {
         const endLine = expression.loc.end.line
         const multiLine = startLine !== endLine
 
-        const closingLineTokens = multiLine ? getClosingLineTokens(lines[endLine - 1]) : null
+        const closingLineTokens = multiLine ? getClosingLineTokens(lines[endLine - 1]) : ''
 
         const endsWithSemicolon = lines[endLine - 1].match(/(;)\s*$/) !== null
 
@@ -125,8 +136,9 @@ export default (inputPath, options = {}) => {
         (all, { closingLineTokens, endsWithSemicolon, hash, sourceCode }) => {
           const hashedExpression = `quasiExpr_${hash}${endsWithSemicolon ? '' : ';'}`
 
-          if (closingLineTokens !== null) {
-            const firstLineIndentation = indentedCss.match(new RegExp(`^(\\s*).*${hashedExpression}`, 'm'))[1]
+          if (closingLineTokens !== '') {
+            const firstLineIndentationMatches = indentedCss.match(new RegExp(`^(\\s*).*${hashedExpression}`, 'm'))
+            const firstLineIndentation = firstLineIndentationMatches ? firstLineIndentationMatches[1] : ''
 
             const sourceCodeWithoutLastLine = sourceCode.split(EOL).slice(0, -1).join(EOL)
 
@@ -142,7 +154,7 @@ export default (inputPath, options = {}) => {
       )
 
       const formattedHash = getHash(formatted)
-      const unwrapperFn = (string) => {
+      const unwrapperFn = (text) => {
         const escapedString = escapeStringRegexp(
           helper === 'keyframes' ? wrapKeyframes(formattedHash) : wrapSelector(formattedHash),
         )
@@ -154,7 +166,10 @@ export default (inputPath, options = {}) => {
 
         const unwrappingRegexp = new RegExp(`^\\s*${unwrappingString}$`, 'm')
 
-        return string.replace(/-styled-mixin: /g, '$').match(unwrappingRegexp)[1]
+        const textWithoutEscapedMixins = text.replace(/-styled-mixin: /g, '$')
+        const unwrappedMatches = textWithoutEscapedMixins.match(unwrappingRegexp)
+
+        return unwrappedMatches ? unwrappedMatches[1] : textWithoutEscapedMixins
       }
 
       const unwrapped = isWrapped ? unwrapperFn(formatted) : formatted

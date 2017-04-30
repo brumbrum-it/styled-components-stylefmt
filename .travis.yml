@@ -15,6 +15,8 @@ cache:
   yarn: true
 
 script:
+  - yarn eslint
+  - yarn flow
   - yarn lib
   - yarn test:stylelint
   - yarn test -- --coverage

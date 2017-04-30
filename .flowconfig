@@ -1,0 +1,7 @@
+[ignore]
+<PROJECT_ROOT>/bin
+<PROJECT_ROOT>/lib
+<PROJECT_ROOT>/node_modules/stylelint
+
+[libs]
+/flow-typed
