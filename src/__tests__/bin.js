@@ -1,3 +1,5 @@
+// @flow
+
 import { spawn } from 'child_process'
 import fs from 'fs-extra'
 import globby from 'globby'
