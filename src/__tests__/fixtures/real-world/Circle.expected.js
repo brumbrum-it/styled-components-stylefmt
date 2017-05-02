@@ -28,6 +28,11 @@ export default (props) => {
     `}
 
     &:before {
+      background: linear-gradient(${({ direction }) => `
+        ${direction === 'horizontal' ? 'right' : 'bottom'},
+        ${landingHeadingBackground} 0%,
+        ${transparentize(1, landingHeadingBackground)} 100%
+      `});
       content: '';
       display: block;
       margin: 0 auto;

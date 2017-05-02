@@ -134,7 +134,8 @@ export default function (inputPath: string, options?: Options = {}) {
 
       const formatted = expressionSourceMap.reduce(
         (all, { closingLineTokens, endsWithSemicolon, hash, sourceCode }) => {
-          const hashedExpression = `quasiExpr_${hash}${endsWithSemicolon ? '' : ';'}`
+          const hashedExpression = `quasiExpr_${hash}${endsWithSemicolon ? '' : ';?'}`
+          const hashedRegexp = new RegExp(hashedExpression)
 
           if (closingLineTokens !== '') {
             const firstLineIndentationMatches = indentedCss.match(new RegExp(`^(\\s*).*${hashedExpression}`, 'm'))
@@ -143,12 +144,12 @@ export default function (inputPath: string, options?: Options = {}) {
             const sourceCodeWithoutLastLine = sourceCode.split(EOL).slice(0, -1).join(EOL)
 
             return all.replace(
-              hashedExpression,
+              hashedRegexp,
               `{${sourceCodeWithoutLastLine}${EOL}${firstLineIndentation}${closingLineTokens}}`,
             )
           }
 
-          return all.replace(hashedExpression, `{${sourceCode}}`)
+          return all.replace(hashedRegexp, `{${sourceCode}}`)
         },
         indentedCss,
       )

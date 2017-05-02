@@ -14,3 +14,12 @@ const Div = styled.div`
 const Button = styled.button`
   ${props => props.isHovering && interpolatedStyle}
 `
+
+// Interpolation in a media query
+const Link = styled.a`
+  color: red;
+
+  @media (${medium}) {
+    color: blue;
+  }
+`

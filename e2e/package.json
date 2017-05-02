@@ -1,0 +1,13 @@
+{
+  "scripts": {
+    "format": "styled-components-stylefmt --config .stylelintrc.js src/index.actual.js src/index.formatted.js",
+    "test": "jest src"
+  },
+  "devDependencies": {
+    "babel-jest": "^19.0.0",
+    "jest": "^19.0.2",
+    "stylelint": "^7.10.1",
+    "stylelint-config-standard": "^16.0.0",
+    "stylelint-processor-styled-components": "^0.1.0"
+  }
+}

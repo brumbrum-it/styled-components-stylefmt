@@ -20,5 +20,10 @@ script:
   - yarn lib
   - yarn test:stylelint
   - yarn test -- --coverage
+  # E2E
+  - cd e2e
+  - yarn --pure-lock
+  - yarn add file:$PWD/..
+  - yarn test
 
 after_success: yarn coveralls
