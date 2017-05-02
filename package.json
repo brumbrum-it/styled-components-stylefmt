@@ -67,7 +67,7 @@
     "node": ">= 4"
   },
   "bin": {
-    "styled-components-stylefmt": "bin/cli.js"
+    "styled-components-stylefmt": "bin/index.js"
   },
   "files": [
     "bin/index.js",
