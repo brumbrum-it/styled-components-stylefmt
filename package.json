@@ -48,7 +48,11 @@
     "test": "jest --config .jestrc.json",
     "test:stylelint": "stylelint \"./src/__tests__/fixtures/**/*.expected.js\" --config .stylelintrc"
   },
-  "author": "Enoah Netzach",
+  "author": {
+    "name": "Enoah Netzach",
+    "email": "f.castellarin@gmail.com",
+    "url": "https://github.com/EnoahNetzach"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/brumbrum-it/styled-components-stylefmt.git"
