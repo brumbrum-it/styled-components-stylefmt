@@ -2,6 +2,7 @@
 <PROJECT_ROOT>/bin
 <PROJECT_ROOT>/lib
 <PROJECT_ROOT>/node_modules/stylelint
+<PROJECT_ROOT>/e2e
 
 [libs]
 /flow-typed
