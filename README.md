@@ -1,8 +1,8 @@
 # Modern CSS Formatter for the component age
 
 [![npm](https://img.shields.io/npm/v/styled-components-stylefmt.svg)](https://www.npmjs.com/package/styled-components-stylefmt)
-[![Build Status](https://travis-ci.org/EnoahNetzach/styled-components-stylefmt.svg?branch=master)](https://travis-ci.org/EnoahNetzach/styled-components-stylefmt)
-[![Coverage Status](https://coveralls.io/repos/github/EnoahNetzach/styled-components-stylefmt/badge.svg?branch=master)](https://coveralls.io/github/EnoahNetzach/styled-components-stylefmt?branch=master)
+[![Build Status](https://travis-ci.org/brumbrum-it/styled-components-stylefmt.svg?branch=master)](https://travis-ci.org/brumbrum-it/styled-components-stylefmt)
+[![Coverage Status](https://coveralls.io/repos/github/brumbrum-it/styled-components-stylefmt/badge.svg?branch=master)](https://coveralls.io/github/brumbrum-it/styled-components-stylefmt?branch=master)
 
 <div style="display: flex; width: 100%; align-items: center; justify-content: center; margin: 20px 0;">
   <a href="https://github.com/morishitter/stylefmt">

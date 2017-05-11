@@ -51,10 +51,10 @@
   "author": "Enoah Netzach",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/EnoahNetzach/styled-components-stylefmt.git"
+    "url": "git+https://github.com/brumbrum-it/styled-components-stylefmt.git"
   },
   "bugs": {
-    "url": "https://github.com/EnoahNetzach/styled-components-stylefmt/issues"
+    "url": "https://github.com/brumbrum-it/styled-components-stylefmt/issues"
   },
   "license": "MIT",
   "keywords": [
