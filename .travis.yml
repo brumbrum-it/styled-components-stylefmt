@@ -24,7 +24,6 @@ script:
   # E2E
   - cd e2e
   - yarn --pure-lock
-  - yarn add file:$PWD/..
   - yarn test
 
 after_success: yarn coveralls
