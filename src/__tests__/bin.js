@@ -1,6 +1,6 @@
 // @flow
 
-import { spawn } from 'child_process'
+import { spawn, spawnSync } from 'child_process'
 import fs from 'fs-extra'
 import globby from 'globby'
 import path from 'path'
@@ -35,6 +35,8 @@ const run = args =>
 
     bin.on('close', code => resolve({ code, error, output }))
   })
+
+beforeAll(() => spawnSync('yarn', ['lib'], { stdio: 'ignore' }))
 
 describe('bin', () => {
   let args = []

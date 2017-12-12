@@ -130,7 +130,7 @@ export default function (inputPath: string, options?: Options = {}) {
       const isWrapped = wrappedContent !== fixedContent
 
       const { css } = resolvePromise(postcss([stylefmt(options)]).process(wrappedContent, { from: inputPath }))
-      const indentedCss = indentString(css, 1, nodeIndentation)
+      const indentedCss = indentString(css, 1, { indent: nodeIndentation })
 
       const formatted = expressionSourceMap.reduce(
         (all, { closingLineTokens, endsWithSemicolon, hash, sourceCode }) => {
@@ -161,6 +161,7 @@ export default function (inputPath: string, options?: Options = {}) {
         )
 
         const unwrappingString = escapedString
+          .replace(/\d+ \\{/, '\\d+ \\{')
           .replace(/\s+/, '\\s*')
           .replace(EOL, `(?:${escapedEOL})*`)
           .replace(new RegExp(`${escapedEOL}*${formattedHash}${escapedEOL}*`), `${escapedEOL}*((?:.|[\\r\\n])+)`)

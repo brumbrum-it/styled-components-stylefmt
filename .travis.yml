@@ -7,7 +7,7 @@ node_js:
 
 os:
   - linux
-  - osx
+#  - osx
 
 cache:
   directories:
