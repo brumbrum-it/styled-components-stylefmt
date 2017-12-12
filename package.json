@@ -1,6 +1,6 @@
 {
   "name": "styled-components-stylefmt",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "Formats styled-components templates with stylefmt",
   "main": "lib/index.js",
   "dependencies": {
