@@ -4,10 +4,10 @@ import traverse from 'babel-traverse'
 import { parse, tokTypes } from 'babylon'
 import crypto from 'crypto'
 import deasync from 'deasync'
+import detectNewline from 'detect-newline'
 import escapeStringRegexp from 'escape-string-regexp'
 import fs from 'fs'
 import indentString from 'indent-string'
-import { EOL } from 'os'
 import postcss from 'postcss'
 import stylefmt from 'stylefmt'
 import { isHelper, isStyled, isStyledImport } from 'stylelint-processor-styled-components/lib/utils/styled'
@@ -33,22 +33,24 @@ function resolvePromise<R>(promise: Promise<R>): R | any {
   return result
 }
 
-const escapedEOL = escapeStringRegexp(EOL)
-
-const closingTokens = [tokTypes.bracketR, tokTypes.braceR, tokTypes.braceBarR, tokTypes.parenR, tokTypes.backQuote]
-  .map(({ label }) => label)
-  .map(escapeStringRegexp)
-
-const closingRegexp = new RegExp(`^\\s*((?:${closingTokens.join('|')}|\\s)+)\\s*${closingTokens[1]}.*$`, 'm')
-
-function getClosingLineTokens(line: string) {
-  const matches = line.match(closingRegexp)
-
-  return matches ? matches[1] : ''
-}
-
 export default function (inputPath: string, options?: Options = {}) {
   const input = fs.readFileSync(inputPath).toString()
+
+  const EOL = detectNewline(input)
+  const escapedEOL = escapeStringRegexp(EOL)
+
+  const closingTokens = [tokTypes.bracketR, tokTypes.braceR, tokTypes.braceBarR, tokTypes.parenR, tokTypes.backQuote]
+    .map(({ label }) => label)
+    .map(escapeStringRegexp)
+
+  const closingRegexp = new RegExp(`^\\s*((?:${closingTokens.join('|')}|\\s)+)\\s*${closingTokens[1]}.*$`, 'm')
+
+  const getClosingLineTokens = (line: string) => {
+    const matches = line.match(closingRegexp)
+
+    return matches ? matches[1] : ''
+  }
+
   const lines = input.split(EOL)
   let output = input
   let offset = 0
