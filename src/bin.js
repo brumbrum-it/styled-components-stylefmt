@@ -154,3 +154,9 @@ if (typeof argv.r === 'string') {
 } else {
   printHelp()
 }
+
+process.on('unhandledRejection', (err) => {
+  console.error('Uncaught promise exception:', err)
+
+  process.exit(1)
+})
