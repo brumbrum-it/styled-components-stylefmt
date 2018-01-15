@@ -95,7 +95,7 @@ function handleDiff(file, original, formatted) {
     diff = formatted
   }
 
-  return `${path.relative(process.cwd(), file)}\n${diff}`
+  return `${path.relative(process.cwd(), file).replace(/\\/g, '/')}\n${diff}`
 }
 
 function processMultipleFiles(files) {
@@ -125,7 +125,7 @@ function processMultipleFiles(files) {
     } else {
       let formatted = messages.filter(file => file)
       if (formatted.length) {
-        formatted = `${formatted.join(', ')}\n\n${formatted.length}`
+        formatted = formatted.length
       } else {
         formatted = 'No'
       }
@@ -154,3 +154,9 @@ if (typeof argv.r === 'string') {
 } else {
   printHelp()
 }
+
+process.on('unhandledRejection', (err) => {
+  console.error('Uncaught promise exception:', err)
+
+  process.exit(1)
+})
